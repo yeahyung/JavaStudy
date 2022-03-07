@@ -19,7 +19,6 @@ public class k_number {
             Arrays.sort(tempArr);
             anw[i] = tempArr[commands[i][2] - 1];
         }
-
         return anw;
     }
 }
