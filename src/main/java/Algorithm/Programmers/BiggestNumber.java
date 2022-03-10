@@ -35,7 +35,7 @@ public class BiggestNumber {
             stringBuilder.append(numInfo.realNum);
         }
 
-        if(Double.parseDouble(stringBuilder.toString()) == 0d)
+        if(stringBuilder.charAt(0) == '0')
             return "0";
         return stringBuilder.toString();
     }
