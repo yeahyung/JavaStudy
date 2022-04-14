@@ -5,31 +5,10 @@ package ModernJava.Chapter2;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 enum Color {RED, GREEN}
-
-class Apple {
-    Color color;
-    int weight;
-
-    public Apple() {
-        ;
-    }
-
-    public Apple(Color color, int weight) {
-        this.color = color;
-        this.weight = weight;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-}
 
 public class BehaviorParams {
     public static void main(String[] args) {
@@ -44,6 +23,16 @@ public class BehaviorParams {
         List<Apple> predicatedApples = filterApples(apples, new AppleGreenColorPredicate());
         printApples(apples, new AppleComplexPrinter());
         printApples(apples, new AppleSimplePrinter());
+
+        // 5. 람다 표현식
+        List<Apple> result = filterApples(apples, (Apple apple) -> Color.RED.equals(apple.getColor()));
+        printApples(result, new AppleComplexPrinter());
+
+        // 6
+        List<Apple> redAppless = filter(apples, (Apple apple) -> Color.RED.equals(apple.getColor()));
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
+        List<Integer> evenNumbers = filter(numbers, (Integer i) -> i % 2 == 0);
+        evenNumbers.forEach(System.out::println);
     }
 
     // 1. Green Apple 필터링
@@ -108,4 +97,18 @@ public class BehaviorParams {
     }
 
     // 하지만 위의 방법들은 여러 클래스를 구현해서 인스턴스화해야한다.
+    // 새로운 동작을 전달하려면 매번 인터페이스를 구현한 클래스를 구현한 뒤 인스턴스화해야한다.
+    // 익명 클래스를 통해 줄일 수 있지만 람다 표현식으로 하면 더 가독성있고 깔끔하다.
+
+    /// 6. 리스트 형식으로 추상화
+    public static <T> List<T> filter(List<T> list, Predicate<T> p) {
+        List<T> result = new ArrayList<>();
+        for (T e: list) {
+            if (p.test(e)) {
+                result.add(e);
+            }
+        }
+
+        return result;
+    }
 }
