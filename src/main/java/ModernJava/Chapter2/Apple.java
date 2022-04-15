@@ -6,6 +6,10 @@ public class Apple {
 
     public Apple() { }
 
+    public Apple(Integer weight) {
+        this.weight = weight;
+    }
+
     public Apple(Color color, int weight) {
         this.color = color;
         this.weight = weight;
