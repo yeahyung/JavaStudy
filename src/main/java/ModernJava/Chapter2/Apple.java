@@ -19,6 +19,10 @@ public class Apple {
         return color;
     }
 
+    public String getColorToString() {
+        return color.toString();
+    }
+
     public Integer getWeight() {
         return weight;
     }

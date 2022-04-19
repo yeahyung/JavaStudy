@@ -83,6 +83,19 @@ public class Lambda {
         // 4. 메서드 참조 사용
         apples.sort(comparing(Apple::getWeight));
 
+        // Comperator 연결
+        apples.sort(comparing(Apple::getWeight)
+                .reversed()
+                .thenComparing(Apple::getColorToString));
+
+        // Function 조합
+        // f.andThen(g) -> g(f(x))
+        // f.compose(g) -> f(g(x))
+        Function<String, String> addHeader = Letter::addHeader;
+        Function<String, String> transformationPipeline = addHeader
+                .andThen(Letter::checkSpelling)
+                .andThen(Letter::addFooter);
+        System.out.println(transformationPipeline.apply("hey labda"));
     }
 
     public static List<Apple> map(List<Integer> list, Function<Integer, Apple> f) {
