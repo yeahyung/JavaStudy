@@ -24,8 +24,7 @@ public class H_Index {
         for(int i=0; i < citations.length; i++) {
             if(citations[i] >= citations.length) {
                 countArr[citations.length]++;
-            }
-            else {
+            } else {
                 countArr[citations[i]]++;
             }
         }
