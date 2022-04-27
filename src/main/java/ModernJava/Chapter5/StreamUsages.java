@@ -5,6 +5,7 @@ import ModernJava.Chapter4.Dish;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamUsages {
@@ -20,7 +21,7 @@ public class StreamUsages {
         // 5.1 Filtering
         // filter 메서드는 Predicate(Boolean을 반환하는 함수)를 인수로 받아 일치하는 요소를 포함하는 스트림을 반환한다.
         // distinct 메서드는 고유 요소로 이루어진 스트림을 반환한다(객체의 hashCode, equals로 결정)
-        List<Integer> numbers = Arrays.asList(1, 2, 1 ,3 ,3 ,2, 4);
+        List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
         numbers.stream()
                 .filter(i -> i % 2 == 0)
                 .distinct()
@@ -30,7 +31,7 @@ public class StreamUsages {
         // Predicate 를 이용한 Slicing
         // limit을 활용한 스트림 축소
         List<Dish> dishes = menu.stream()
-                .filter(dish -> dish.getCalories() > 300)
+                .filter(dish -> dish.getCalories() >= 300)
                 .limit(3)
                 .collect(Collectors.toList());
 
@@ -64,7 +65,7 @@ public class StreamUsages {
                 .map(word -> word.split(""))
                 .distinct()
                 .collect(Collectors.toList());
-        for(String[] temp : res) {
+        for (String[] temp : res) {
             Arrays.stream(temp).forEach(System.out::print);
         }
         System.out.println();
@@ -98,5 +99,48 @@ public class StreamUsages {
         pairs.forEach(
                 pair -> System.out.print(pair[0] + "" + pair[1] + " : ")
         );
+        System.out.println();
+
+        /* 5.4 검색과 매칭
+            allMatch: 모든 요소와 일치하는지 검사
+            anyMatch: 적어도 한 요소와 일치하는지 확인(boolean 반환)
+            noneMatch: 일치하는 요소가 없는지 확인
+            all, any, none Match는 스트림 쇼트서킷 기법(&&, ||) 연산을 활용한다.
+            쇼트 서킷: 전체 스트림을 처리하지 않더라도, 결과를 반환할 수 있는 경우 반환하는 방식
+            findFirst: 첫번째 요소 반환
+            findAny: 임의의 요소를 반환
+        */
+
+        Optional<Dish> dish = menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny();
+        dish.ifPresent(System.out::println);
+
+        List<Integer> someNumbers = Arrays.asList(1, 2, 3, 4, 5);
+        someNumbers.stream()
+                .map(n -> n * n)
+                .filter(n -> n % 3 == 0)
+                .findFirst()
+                .ifPresent(num -> System.out.println(num));
+
+        // findFirst 는 병렬 실행에 사용할 수 없음, 병렬 사용에는 findAny 를 사용한다.
+
+        // 5.5 리듀싱: 모든 스트림 요소를 처리해서 값으로 도출한다.
+        // 리듀싱은 초기값, BinaryOperator<T> 를 인수로 받는다.
+        int sum = someNumbers.stream()
+                .reduce(0, (a, b) -> a + b);
+        System.out.println(sum);
+
+        // 초기값을 받지 않도록 오버로드된 reduce도 있으며, 이 reduce는 Optional 객체를 반환한다.
+        Optional<Integer> max = someNumbers.stream().reduce(Integer::max);
+        max.ifPresent(num -> System.out.println(num));
+
+        // Quiz 5-3.
+        int dishCount = menu.stream()
+                .map(d -> 1)
+                .reduce(0, (a, b) -> a + 1);
+        System.out.println(dishCount);
+        long dishCount2 = menu.stream().count();
+        System.out.println(dishCount2);
     }
 }
