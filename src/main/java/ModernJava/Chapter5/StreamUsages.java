@@ -142,5 +142,15 @@ public class StreamUsages {
         System.out.println(dishCount);
         long dishCount2 = menu.stream().count();
         System.out.println(dishCount2);
+
+        // reducing은 박싱에 대한 비용이 있음, 합계 계산하기 전에 Integer를 기본형으로 언박싱해야하기 때문이
+        // 따라서 기본형 특화 스트림이 나왔다(ampToInt)
+        int calories = menu.stream()
+                //.map(Dish::getCalories)
+                .mapToInt(Dish::getCalories)
+                //.reduce(0, Integer::sum);
+                .sum();
+
+
     }
 }
