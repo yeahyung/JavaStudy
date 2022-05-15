@@ -70,6 +70,5 @@ public class Practice {
         System.out.println(transactions.stream()
                 .map(Transaction::getValue)
                 .reduce(Integer::min));
-
     }
 }
