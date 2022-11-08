@@ -1,14 +1,15 @@
 package Algorithm.LeetCode;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class MissingNumber {
 
     @Test
     public void missingNumber() {
-        Assert.assertEquals(missingNumber(new int[]{3, 0, 1}), 2);
-        Assert.assertEquals(missingNumber(new int[]{9, 6, 4, 2, 3, 5, 7, 0, 1}), 8);
+        Assertions.assertEquals(missingNumber(new int[]{3, 0, 1}), 2);
+        Assertions.assertEquals(missingNumber(new int[]{9, 6, 4, 2, 3, 5, 7, 0, 1}), 8);
     }
 
     public int missingNumber(int[] nums) {

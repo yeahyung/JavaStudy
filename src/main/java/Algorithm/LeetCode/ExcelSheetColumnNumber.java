@@ -1,15 +1,16 @@
 package Algorithm.LeetCode;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class ExcelSheetColumnNumber {
 
     @Test
     public void excelSheetColumnNumber() {
-        Assert.assertEquals(titleToNumber("A"), 1);
-        Assert.assertEquals(titleToNumber("AB"), 28);
-        Assert.assertEquals(titleToNumber("ZY"), 701);
+        Assertions.assertEquals(titleToNumber("A"), 1);
+        Assertions.assertEquals(titleToNumber("AB"), 28);
+        Assertions.assertEquals(titleToNumber("ZY"), 701);
     }
 
     public int titleToNumber(String columnTitle) {

@@ -1,14 +1,14 @@
 package Algorithm.LeetCode;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class AddDigits {
 
     @Test
     public void addDigits() {
-        Assert.assertEquals(addDigits(38), 2);
-        Assert.assertEquals(addDigits(0), 0);
+        Assertions.assertEquals(addDigits(38), 2);
+        Assertions.assertEquals(addDigits(0), 0);
     }
 
     public int addDigits(int num) {

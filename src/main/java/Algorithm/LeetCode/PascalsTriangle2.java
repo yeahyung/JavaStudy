@@ -1,7 +1,8 @@
 package Algorithm.LeetCode;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,8 +12,8 @@ public class PascalsTriangle2 {
     @Test
     public void PascalsTriangle() {
         // combination
-        Assert.assertEquals(getRow(3), Arrays.asList(1, 3, 3, 1));
-        Assert.assertEquals(getRow(1), Arrays.asList(1, 1));
+        Assertions.assertEquals(getRow(3), Arrays.asList(1, 3, 3, 1));
+        Assertions.assertEquals(getRow(1), Arrays.asList(1, 1));
     }
 
     public List<Integer> getRow(int rowIndex) {

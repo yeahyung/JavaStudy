@@ -1,7 +1,8 @@
 package Algorithm.LeetCode;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +10,8 @@ import java.util.Map;
 public class HappyNumber {
     @Test
     public void happyNumber() {
-        Assert.assertEquals(isHappy(19), true);
-        Assert.assertEquals(isHappy(2), false);
+        Assertions.assertEquals(isHappy(19), true);
+        Assertions.assertEquals(isHappy(2), false);
     }
 
     public boolean isHappy(int n) {

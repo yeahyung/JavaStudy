@@ -1,7 +1,8 @@
 package Algorithm.LeetCode;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ public class BinaryTreeInorderTraversal {
 
         treeNode1.right = treeNode2;
         treeNode2.left = treeNode3;
-        Assert.assertEquals(inorderTraversal(treeNode1), Arrays.asList(1, 3, 2));
+        Assertions.assertEquals(inorderTraversal(treeNode1), Arrays.asList(1, 3, 2));
     }
 
     public List<Integer> inorderTraversal(TreeNode root) {

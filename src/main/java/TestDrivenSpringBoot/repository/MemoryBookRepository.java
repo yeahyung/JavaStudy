@@ -9,18 +9,23 @@ import org.springframework.data.repository.query.FluentQuery;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class MemoryBookRepository implements BookRepository {
 
     private static List<Book> library = new ArrayList<>();
     @Override
     public List<Book> findByAuthor(String author) {
-        return null;
+        return library.stream()
+                .filter(book -> book.getAuthor().equals(author))
+                .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Book> findByName(String name) {
-        return Optional.empty();
+        return library.stream()
+                .filter(book -> book.getName().equals(name))
+                .findFirst();
     }
 
     @Override
